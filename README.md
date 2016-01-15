@@ -35,6 +35,7 @@ mvn clean install
     Negatives - Problem statement is not provided whether if we have to use existing collection API implementation or not.
 a. Can you implement it another way so as to avoid the negatives?
     Yes, provided implementation using quicksort and filtered duplicates.
+    removeDuplicatesUsingSortAndFilter method has this usecase implementation.
 6. Your solution should be testable and “production ready.”
     It is a maven project and when you ran mvn clean install the deployable artifact(production ready) will be generated in the target dir after running the JUnit tests.
 ```
