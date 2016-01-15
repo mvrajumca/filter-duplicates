@@ -23,9 +23,9 @@ mvn clean install
     b.removeDuplicatesAndRetainOrder
     c.removeDuplicatesAndSort
 3. We would prefer to see three implementations (one that should take into consideration #4 below) and an explanation of what use-cases are suitable to each implementation 
-    a.removeDuplicates
-    b.removeDuplicatesAndRetainOrder
-    c.removeDuplicatesAndSort
+    a.removeDuplicates -Removes duplicates using set implementation.
+    b.removeDuplicatesAndRetainOrder -Removes duplicates using set implementation and retains the insertion order.
+    c.removeDuplicatesAndSort -Removes duplicates and sorts the elements using set implementation.
 4. What if we need to retain the original order?
     removeDuplicatesAndRetainOrder method provides the implementation of this usecase.
 5. What are the positives and negatives of your solution?
