@@ -10,51 +10,77 @@ import org.apache.log4j.Logger;
 
 /**
  * @author Raju
- *
+ * 
  */
 public class FilterDuplicates {
 
-	private final static Logger logger = Logger.getLogger(FilterDuplicates.class);
-	
+	private final static Logger logger = Logger
+			.getLogger(FilterDuplicates.class);
+
+	/**
+	 * Removes duplicates using set implementation.
+	 * 
+	 * @param randomIntegers
+	 * @return
+	 */
 	public int[] removeDuplicates(int[] randomIntegers) {
 		Set<Integer> filteredSet = new HashSet<Integer>();
-		for(Integer intgr : randomIntegers){
+		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
 		}
-		//Converting set to int array
+		// Converting set to int array
 		return toIntArray(filteredSet);
 	}
-	
-	public int[] removeDuplicatesAndRetainOrder(int[] randomIntegers){
+
+	/**
+	 * Removes duplicates using set implementation and retains the insertion
+	 * order.
+	 * 
+	 * @param randomIntegers
+	 * @return
+	 */
+	public int[] removeDuplicatesAndRetainOrder(int[] randomIntegers) {
 		Set<Integer> filteredSet = new LinkedHashSet<Integer>();
-		for(Integer intgr : randomIntegers){
+		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
 		}
-		//Converting set to int array
+		// Converting set to int array
 		return toIntArray(filteredSet);
 	}
-	
-	public int[] removeDuplicatesAndSort(int[] randomIntegers){
+
+	/**
+	 * Removes duplicates and sorts the elements using set implementation.
+	 * 
+	 * @param randomIntegers
+	 * @return
+	 */
+	public int[] removeDuplicatesAndSort(int[] randomIntegers) {
 		Set<Integer> filteredSet = new TreeSet<Integer>();
-		for(Integer intgr : randomIntegers){
+		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
 		}
-		//Converting set to int array
+		// Converting set to int array
 		return toIntArray(filteredSet);
 	}
-	
-	public int[] removeDuplicatesUsingSortAndFilter(int[] randomIntegers){
-		sortElements(0,randomIntegers.length -1, randomIntegers);
+
+	/**
+	 * Removes duplicates using quick sort approach and filters duplicates.
+	 * 
+	 * @param randomIntegers
+	 * @return
+	 */
+	public int[] removeDuplicatesUsingSortAndFilter(int[] randomIntegers) {
+		sortElements(0, randomIntegers.length - 1, randomIntegers);
 		return filterDups(randomIntegers);
 	}
-	
+
 	private int[] filterDups(int[] randomIntegers) {
 		int count = 1;
 		int[] filterElements = new int[randomIntegers.length];
 		int lastElement = randomIntegers[0];
 		filterElements[0] = lastElement;
-		for(int i=1; i<randomIntegers.length;i++) {
-			if(randomIntegers[i] != lastElement){
+		for (int i = 1; i < randomIntegers.length; i++) {
+			if (randomIntegers[i] != lastElement) {
 				filterElements[count] = randomIntegers[i];
 				count = count + 1;
 			}
@@ -62,39 +88,40 @@ public class FilterDuplicates {
 		}
 		int[] filterCompress = new int[count];
 		System.arraycopy(filterElements, 0, filterCompress, 0, count);
-		logger.debug("Numbers using sort and filter "+Arrays.toString(filterCompress));
+		logger.debug("Numbers using sort and filter "
+				+ Arrays.toString(filterCompress));
 		return filterCompress;
 	}
 
 	private void sortElements(int start, int end, int[] randomIntegers) {
-		int middleElement = randomIntegers[start + (end-start)/2];
-		int i= start;
-		int j= end;
-		while(i <= j){
-			while(randomIntegers[i] < middleElement) {
+		int middleElement = randomIntegers[start + (end - start) / 2];
+		int i = start;
+		int j = end;
+		while (i <= j) {
+			while (randomIntegers[i] < middleElement) {
 				i++;
 			}
-			while(randomIntegers[j] > middleElement) {
+			while (randomIntegers[j] > middleElement) {
 				j--;
 			}
-			if(i <= j) {
+			if (i <= j) {
 				swap(randomIntegers, i, j);
 				i++;
 				j--;
 			}
 		}
-		if(start < j){
+		if (start < j) {
 			sortElements(start, j, randomIntegers);
 		}
-		if(i<end){
+		if (i < end) {
 			sortElements(i, end, randomIntegers);
 		}
 	}
-	
+
 	private static void swap(int[] values, int startIndex, int nextIndex) {
-	    int temp = values[startIndex];
-	    values[startIndex] = values[nextIndex];
-	    values[nextIndex] = temp;
+		int temp = values[startIndex];
+		values[startIndex] = values[nextIndex];
+		values[nextIndex] = temp;
 	}
 
 	/**
@@ -104,10 +131,10 @@ public class FilterDuplicates {
 	private int[] toIntArray(Set<Integer> filteredSet) {
 		int[] filteredVals = new int[filteredSet.size()];
 		int index = 0;
-		for(Integer filSetVal : filteredSet){
-			filteredVals[index++] = filSetVal;  
+		for (Integer filSetVal : filteredSet) {
+			filteredVals[index++] = filSetVal;
 		}
-		logger.debug("Filtered Array "+Arrays.toString(filteredVals));
+		logger.debug("Filtered Array " + Arrays.toString(filteredVals));
 		return filteredVals;
 	}
 }
