@@ -24,6 +24,7 @@ public class FilterDuplicates {
 	 * @return
 	 */
 	public int[] removeDuplicates(int[] randomIntegers) {
+		validateRandomIntegers(randomIntegers);
 		Set<Integer> filteredSet = new HashSet<Integer>();
 		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
@@ -40,6 +41,7 @@ public class FilterDuplicates {
 	 * @return
 	 */
 	public int[] removeDuplicatesAndRetainOrder(int[] randomIntegers) {
+		validateRandomIntegers(randomIntegers);
 		Set<Integer> filteredSet = new LinkedHashSet<Integer>();
 		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
@@ -55,6 +57,7 @@ public class FilterDuplicates {
 	 * @return
 	 */
 	public int[] removeDuplicatesAndSort(int[] randomIntegers) {
+		validateRandomIntegers(randomIntegers);
 		Set<Integer> filteredSet = new TreeSet<Integer>();
 		for (Integer intgr : randomIntegers) {
 			filteredSet.add(intgr);
@@ -70,6 +73,7 @@ public class FilterDuplicates {
 	 * @return
 	 */
 	public int[] removeDuplicatesUsingSortAndFilter(int[] randomIntegers) {
+		validateRandomIntegers(randomIntegers);
 		sortElements(0, randomIntegers.length - 1, randomIntegers);
 		return filterDups(randomIntegers);
 	}
@@ -136,5 +140,11 @@ public class FilterDuplicates {
 		}
 		logger.debug("Filtered Array " + Arrays.toString(filteredVals));
 		return filteredVals;
+	}
+	
+	private void validateRandomIntegers(int[] randomIntegers) {
+		if(randomIntegers==null || randomIntegers.length == 0) {
+			throw new RuntimeException("Invalid input.");
+		}
 	}
 }
